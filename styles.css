@@ -1,0 +1,672 @@
+/**
+ * styles.css
+ * Monochromatyczny Styl: Czerń, Biel, Uporządkowana Estetyka i Gwiezdny Szum
+ * -------------------------------------------------------------------------
+ * Akcenty: Czysta Biel i subtelny szary
+ */
+
+:root {
+    /* --- Kolory Główne (Monochromatyczne) --- */
+    --background: #0D0D0D; /* Bardzo Ciemna Czerń */
+    --background-light: #1A1A1A; /* Ciemna Szarość, Podstawowe Bloki */
+    --primary-text: #F8F8F8; /* Czysta Biel */
+    --secondary-text: #A0A0A0; /* Szary Tekst Pomocniczy */
+    --accent-border: #333333; /* Ciemnoszary Border/Linie */
+    
+    /* --- Akcent (Czysta Biel zamiast koloru) --- */
+    --main-accent: #FFFFFF; /* Akcent to czysta biel */
+    --main-accent-rgba: rgba(255, 255, 255, 0.2); /* Biała poświata */
+    
+    /* --- Cienie (Subtelne, Monochromatyczne) --- */
+    --shadow-light: rgba(255, 255, 255, 0.08); 
+    --shadow-dark: rgba(0, 0, 0, 0.6); 
+
+    /* --- Kolory Kafelków SKILLS (Monochromatyczne, do podświetlenia na hover) --- */
+    --color-css: #F8F8F8; 
+    --color-js: #B0B0B0; 
+    --color-java: #F8F8F8; 
+    --color-python: #B0B0B0; 
+}
+
+/* ========================================================================= */
+/* --- A. Globalne Ustawienia i Tło --- */
+/* ========================================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--primary-text);
+    background-color: var(--background);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* Gwiezdne tło/szum */
+    background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+                      radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+                      radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+    background-size: 550px 550px, 350px 350px, 250px 250px;
+    background-position: 0 0, 40px 60px, 130px 270px;
+    background-attachment: fixed;
+}
+
+/* Wyłączamy oryginalny canvas, by użyć tła CSS */
+#background-canvas {
+    display: none; 
+}
+
+.vignette-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, rgba(13, 13, 13, 0) 0%, rgba(13, 13, 13, 0.9) 85%, rgba(13, 13, 13, 1) 100%);
+}
+
+a {
+    color: var(--secondary-text);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--main-accent); 
+}
+
+h1, h2, h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.large-title {
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 800;
+    line-height: 1;
+    text-shadow: 2px 2px var(--shadow-dark), -2px -2px var(--shadow-light); 
+}
+
+.subtitle {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: 300;
+    color: var(--secondary-text);
+    max-width: 800px;
+    margin: 15px auto 30px;
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--primary-text); /* Czysty Biały Pasek */
+    display: inline-block;
+}
+
+.fira-code {
+    font-family: 'Fira Code', monospace;
+}
+
+/* ========================================================================= */
+/* --- B. Hero i Przyciski CTA --- */
+/* ========================================================================= */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 20px;
+    background: linear-gradient(180deg, rgba(13,13,13,0) 0%, var(--background) 100%);
+}
+
+.hero-content {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.pre-heading {
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--secondary-text);
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+/* Efekt Piszącej Maszyny - Kursor */
+.typing-text {
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    border-right: 4px solid var(--main-accent); /* Biały kursor */
+    padding-right: 5px;
+    animation: blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--main-accent); }
+}
+
+.chaotic-glitch { 
+    animation: none;
+    text-shadow: 2px 2px var(--shadow-dark), -2px -2px var(--shadow-light);
+}
+.chaotic-glitch::before, .chaotic-glitch::after { content: none; }
+
+
+/* Przyciski CTA */
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 35px;
+    margin: 10px 15px;
+    border: 2px solid var(--accent-border);
+    background-color: var(--background-light);
+    color: var(--primary-text);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+    box-shadow: 0 4px 10px var(--shadow-dark);
+}
+
+.cta-button:hover {
+    border-color: var(--main-accent);
+    background-color: var(--main-accent);
+    color: var(--background);
+    box-shadow: 0 6px 15px var(--main-accent-rgba);
+    transform: translateY(-3px);
+}
+
+.outline-button {
+    background-color: transparent;
+    color: var(--secondary-text);
+    border: 2px solid var(--secondary-text);
+    box-shadow: none;
+}
+
+.outline-button:hover {
+    color: var(--background);
+    background-color: var(--secondary-text);
+    border-color: var(--secondary-text);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Efekt Ripple */
+.ripple-effect {
+    position: relative;
+    z-index: 1;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    background-color: var(--main-accent); /* Zmienione z --tech-accent */
+    width: 100px; 
+    height: 100px;
+    margin-left: -50px;
+    margin-top: -50px;
+    opacity: 0.2; /* Zmniejszona przezroczystość dla subtelności */
+    z-index: 2;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Animacja Hover-Clip-Path */
+.hover-clip-path {
+    transition: clip-path 0.3s ease;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.hover-clip-path:hover {
+    clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+}
+
+
+/* Ikony */
+.custom-dc-icon, .custom-yt-icon {
+    margin-right: 10px;
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover .custom-dc-icon {
+    transform: rotate(10deg) scale(1.1);
+}
+
+/* ========================================================================= */
+/* --- E. Sekcje Treści (Main Content) --- */
+/* ========================================================================= */
+
+main {
+    padding: 80px 0;
+    position: relative;
+    z-index: 10;
+}
+
+.content-section {
+    padding: 60px 20px;
+    max-width: 1000px; 
+    margin: 0 auto;
+}
+
+.centered-section {
+    text-align: center;
+}
+
+.block-section {
+    padding: 80px 20px;
+}
+
+/* Ramka "Katalogu" dla sekcji tekstowych */
+.text-block {
+    max-width: 850px;
+    margin: 0 auto;
+    text-align: left;
+    background-color: var(--background-light);
+    padding: 40px;
+    border: 1px solid var(--accent-border);
+    border-radius: 3px;
+    box-shadow: 0 8px 15px var(--shadow-dark); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 1; 
+}
+
+.text-block::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 1px dashed var(--accent-border); /* Dashed border jako "katalog" */
+    border-radius: 5px;
+    z-index: -1;
+    opacity: 0.5; /* Zmienione na 0.5, było 0.3 */
+}
+
+.text-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px var(--shadow-dark);
+}
+
+.text-block p {
+    margin-bottom: 20px;
+    color: var(--secondary-text);
+    font-size: 1.05em;
+}
+
+.text-block strong {
+    color: var(--primary-text);
+}
+
+/* Odwrócenie bloku dla estetyki */
+.reverse-text-flow .text-block {
+    text-align: right;
+}
+
+/* ========================================================================= */
+/* --- F. Sekcja SKILLS (Kafelki) --- */
+/* ========================================================================= */
+
+.skills-section {
+    padding: 80px 20px;
+}
+
+.skill-tiles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 25px;
+    margin-top: 50px;
+}
+
+.skill-tile {
+    background-color: var(--background-light);
+    padding: 30px;
+    border: 1px solid var(--accent-border);
+    border-radius: 3px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px var(--shadow-dark);
+}
+
+.skill-tile::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: 1px dashed var(--main-accent); /* Zmienione z --tech-accent */
+    border-radius: 5px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.skill-tile:hover {
+    transform: scale(1.03) translateY(-3px);
+    border-color: var(--main-accent); /* Zmienione z --tech-accent */
+    box-shadow: 0 8px 18px var(--main-accent-rgba); /* Zmienione z --tech-accent-rgba */
+}
+
+.skill-tile:hover::before {
+    opacity: 0.5;
+}
+
+.skill-tile i {
+    font-size: 3em;
+    margin-bottom: 15px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    color: var(--primary-text); 
+}
+
+.skill-tile:hover i {
+    transform: scale(1.1) rotate(0deg); 
+    color: var(--main-accent); /* Zmienione z --tech-accent */
+}
+
+.skill-tile h3 {
+    font-size: 1.4em;
+    color: var(--primary-text);
+}
+
+/* Nadanie kolorów ikonom */
+.color-css { } 
+.color-js { } 
+.color-java { } 
+.color-python { } 
+
+
+/* Opis (Dymek) */
+.temp-description {
+    background-color: var(--background) !important; 
+    color: var(--primary-text) !important; 
+    font-weight: 400;
+    box-shadow: 0 5px 15px var(--shadow-dark);
+    border: 1px solid var(--main-accent); /* Zmienione z --tech-accent */
+    padding: 8px 12px !important; 
+    font-size: 0.9em !important; 
+    line-height: 1.4;
+}
+
+/* ========================================================================= */
+/* --- G. Sekcja Kodu --- */
+/* ========================================================================= */
+
+.code-section {
+    padding: 80px 20px;
+}
+
+.code-showcase {
+    perspective: 1000px; 
+    padding: 20px;
+}
+
+.code-window {
+    background-color: #1a1a1a; 
+    border: 1px solid var(--accent-border);
+    border-radius: 5px;
+    box-shadow: 0 0 20px var(--shadow-dark); 
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+    transform: rotateX(3deg) rotateY(0deg) translateZ(0); 
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
+}
+
+.code-window:hover {
+    transform: rotateX(0deg) rotateY(0deg) translateZ(0);
+    box-shadow: 0 0 30px var(--main-accent-rgba); /* Zmienione z --tech-accent-rgba */
+}
+
+.window-header {
+    background-color: #2b2b2b; 
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--accent-border);
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    background-color: #444; 
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.dot.red { background-color: #FF6B6B; } 
+.dot.yellow { background-color: #FFD166; }
+.dot.green { background-color: #6BFF8E; }
+
+.window-title {
+    color: var(--secondary-text);
+    font-size: 0.9em;
+    margin-left: 15px;
+    font-family: 'Fira Code', monospace;
+}
+
+.code-block {
+    padding: 20px;
+    white-space: pre-wrap;
+    text-align: left;
+    color: #E0E0E0; 
+    font-size: 0.95em;
+    line-height: 1.5;
+    max-height: 400px; 
+    overflow-y: auto;
+}
+
+/* Podstawowe 'Syntax Highlighting' */
+.code-block b {
+    color: var(--main-accent); /* Zmienione z --tech-accent */
+    font-weight: 600;
+}
+
+.code-block i {
+    color: var(--secondary-text); 
+    font-style: italic;
+}
+
+.code-block .cursor {
+    display: inline-block;
+    width: 1px;
+    background-color: var(--primary-text);
+    animation: blink-cursor 1s step-end infinite;
+}
+
+@keyframes blink-cursor {
+    from, to { visibility: hidden; }
+    50% { visibility: visible; }
+}
+
+.code-caption {
+    margin-top: 25px;
+    font-style: italic;
+    color: var(--secondary-text);
+    font-size: 0.95em;
+}
+
+.code-caption strong {
+    color: var(--primary-text);
+}
+
+
+/* ========================================================================= */
+/* --- H. Sekcja Kontakt i Stopka --- */
+/* ========================================================================= */
+
+.call-to-action-section {
+    padding: 80px 20px 100px;
+    background-color: var(--background-light);
+    border-top: 1px solid var(--accent-border);
+}
+
+.discord-tag-display {
+    font-size: 1.3em;
+    margin: 25px 0;
+    color: var(--secondary-text);
+}
+
+.highlight-text {
+    color: var(--primary-text);
+    font-weight: 800;
+    text-shadow: 0 0 5px var(--main-accent-rgba); /* Zmienione z --tech-accent-rgba */
+}
+
+.copy-button {
+    background-color: var(--main-accent); /* Zmienione z --tech-accent */
+    color: var(--background);
+    border-color: var(--main-accent); /* Zmienione z --tech-accent */
+    box-shadow: 0 0 10px var(--main-accent-rgba); /* Zmienione z --tech-accent-rgba */
+}
+
+.copy-button:hover {
+    background-color: var(--background);
+    color: var(--main-accent); /* Zmienione z --tech-accent */
+    box-shadow: 0 0 20px var(--main-accent); /* Zmienione z --tech-accent */
+}
+
+.footer {
+    text-align: center;
+    padding: 30px 20px;
+    border-top: 1px solid var(--accent-border);
+    color: var(--secondary-text);
+    font-size: 0.9em;
+    background-color: var(--background);
+}
+
+.social-links {
+    margin-top: 15px;
+}
+
+.social-icon {
+    font-size: 1.6em; 
+    margin: 0 10px;
+    color: var(--secondary-text);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover {
+    color: var(--main-accent); /* Zmienione z --tech-accent */
+    transform: translateY(-3px); 
+}
+
+.hover-wobble:hover {
+    animation: none; 
+}
+
+/* ========================================================================= */
+/* --- I. Animacje Scroll Reveal --- */
+/* ========================================================================= */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Specyficzne dla hero */
+.reveal-slow {
+    opacity: 0;
+    animation: fade-in-up 1.8s forwards; 
+    animation-delay: 0.8s; 
+}
+
+@keyframes fade-in-up {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Efekt tekstowy Split-in */
+.text-split-in {
+    opacity: 0;
+    transform: translateX(-30px); 
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out; 
+}
+
+.text-split-in.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Grupa pop-up */
+.pop-up-group .cta-button {
+    opacity: 0;
+    animation: pop-up 0.5s forwards;
+    transform: scale(0.9); 
+}
+
+.pop-up-group .cta-button:nth-child(1) { animation-delay: 1.8s; } 
+.pop-up-group .cta-button:nth-child(2) { animation-delay: 2.1s; }
+
+@keyframes pop-up {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ========================================================================= */
+/* --- J. Media Queries (Responsywność) --- */
+/* ========================================================================= */
+@media (max-width: 768px) {
+    .large-title {
+        font-size: clamp(2.5rem, 12vw, 6rem);
+    }
+
+    .subtitle {
+        font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+    }
+
+    .section-title {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+    }
+
+    .cta-button {
+        padding: 12px 25px;
+        margin: 8px;
+        font-size: 0.9em;
+    }
+
+    .hero-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
