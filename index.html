@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Ponczulxy-www</title>
+     
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&family=Bebas+Neue&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="dynamic-background"> 
+    
+    <canvas id="background-canvas"></canvas>
+    <div class="vignette-overlay"></div>
+
+    <header class="hero parallax-bg">
+        <div class="hero-content reveal-slow centered-content">
+            <p class="pre-heading reveal-char">Strona By Ponczulxy_</p>
+            <h1 id="heroHeading" class="typing-text chaotic-glitch large-title" data-text-speed="70"></h1>
+            <p class="subtitle" id="heroSubtitle"></p>
+            <div class="hero-links pop-up-group">
+                <a href="#" class="cta-button ripple-effect hover-clip-path" id="discordLink" target="_blank">
+                    <i class="fab fa-discord custom-dc-icon"></i> DISCORD
+                </a>
+                <a href="#" class="cta-button outline-button ripple-effect hover-clip-path" id="youtubeLink" target="_blank">
+                    <i class="fab fa-youtube custom-yt-icon"></i> YouTube
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="content-section centered-section block-section reveal">
+            <div class="text-block text-split-in">
+                <h2 class="section-title">01 / KODOWANKO....</h2>
+                <div id="aboutTextContent">
+                    </div>
+            </div>
+        </section>
+
+        <section id="skills" class="content-section centered-section skills-section reveal">
+             <h2 class="full-width-heading section-title text-split-in">02 / Języki którymi się posługuję</h2>
+            <div class="skill-tiles-grid" id="skillsContainer">
+                </div>
+        </section>
+
+        <section id="gaming" class="content-section centered-section block-section reveal">
+            <div class="text-block text-split-in reverse-text-flow">
+                <h2 class="section-title">03 / Giereczki..</h2>
+                <div id="gamingTextContent">
+                    </div>
+            </div>
+        </section>
+
+        <section id="projects" class="content-section centered-section code-section reveal">
+            <h2 class="full-width-heading section-title text-split-in">04 / KONSOLA W AKCJI</h2>
+            <div class="code-showcase parallax-element" data-depth="0.15">
+                <div class="code-window">
+                    <div class="window-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="window-title">SiemaMordo.java</span>
+                    </div>
+                    <pre class="code-block"><code id="codeSnippet" class="fira-code">
+</code></pre>
+                </div>
+            </div>
+             <p class="description code-caption"><i class="fas fa-hammer"></i>Pozdrawiam serdecznie</p>
+        </section>
+
+        <section id="kontakt" class="content-section centered-section call-to-action-section reveal">
+            <div class="section-text full-width centered-content">
+                <h2 class="text-split-in section-title">05 / UDERZ NA DM!</h2>
+                <p class="description">Masz jakieś pytania/sprawę - Śmiało pisz DM na moim discordzie. Link na dole strony </p>
+                <p class="discord-tag-display">Mój Discord :  <strong id="discordTagPlaceholder" class="highlight-text">Ponczulxy_</strong></p>
+                
+                <div class="button-container pop-up-group">
+                    <button class="cta-button copy-button ripple-effect hover-clip-path" data-tag="" id="copyDiscordTag">
+                        <i class="fas fa-copy"></i> Skopiuj Tag
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="footer">
+        <p id="footerText"></p>
+        <div class="social-links">
+             <a href="#" target="_blank" class="social-icon hover-wobble" id="footerDiscordLink"><i class="fab fa-discord custom-dc-icon"></i></a>
+             <a href="#" target="_blank" class="social-icon hover-wobble" id="footerYoutubeLink"><i class="fab fa-youtube custom-yt-icon"></i></a>
+        </div>
+    </footer>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
